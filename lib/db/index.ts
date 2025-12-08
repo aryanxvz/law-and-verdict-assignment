@@ -51,6 +51,7 @@ export async function initializeDatabase() {
     `;
 
     console.log('Database initialized successfully');
+    return { success: true };
   } catch (error) {
     console.error('Error initializing database:', error);
     throw error;

@@ -4,7 +4,8 @@ import { checkDeviceLimit } from '@/lib/session-manager';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getSession();
+    const res = NextResponse.next();
+    const session = await getSession(request, res);
     
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

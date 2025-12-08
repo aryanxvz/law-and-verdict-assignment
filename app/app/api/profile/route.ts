@@ -4,7 +4,8 @@ import { getUserProfile, upsertUserProfile } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getSession();
+    const res = NextResponse.next();
+    const session = await getSession(request, res);
     
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,7 +22,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getSession();
+    const res = NextResponse.next();
+    const session = await getSession(request, res);
     
     if (!session?.user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
